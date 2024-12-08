@@ -132,52 +132,54 @@ const AdminTeam = () => {
         </button>
 
         {/* Table of Team Members */}
-        <table className="w-full border-collapse border border-gray-300 mb-6">
-          <thead>
-            <tr>
-              <th className="border px-4 py-2">Name</th>
-              <th className="border px-4 py-2">Role</th>
-              <th className="border px-4 py-2">Bio</th>
-              <th className="border px-4 py-2">Profile Image</th>
-              <th className="border px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {teamData.map((member) => (
-              <tr key={member._id}>
-                <td className="border px-4 py-2">{member.name}</td>
-                <td className="border px-4 py-2">{member.role}</td>
-                <td className="border px-4 py-2">{member.bio}</td>
-                <td className="border px-4 py-2">
-                  {member.profileImageUrl && (
-                    <img
-                      src={member.profileImageUrl}
-                      alt={member.name}
-                      className="h-16 w-16 object-cover"
-                    />
-                  )}
-                </td>
-                <td className="border px-4 py-2 flex flex-col gap-2">
-                  <button
-                    onClick={() => handleEdit(member)}
-                    className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 mr-2"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => {
-                      setDeleteId(member._id);
-                      setDeleteModal(true);
-                    }}
-                    className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-300 mb-6">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Name</th>
+                <th className="border px-4 py-2">Role</th>
+                <th className="border px-4 py-2">Bio</th>
+                <th className="border px-4 py-2">Profile Image</th>
+                <th className="border px-4 py-2">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {teamData.map((member) => (
+                <tr key={member._id}>
+                  <td className="border px-4 py-2">{member.name}</td>
+                  <td className="border px-4 py-2">{member.role}</td>
+                  <td className="border px-4 py-2">{member.bio}</td>
+                  <td className="border px-4 py-2">
+                    {member.profileImageUrl && (
+                      <img
+                        src={member.profileImageUrl}
+                        alt={member.name}
+                        className="h-16 w-16 object-cover"
+                      />
+                    )}
+                  </td>
+                  <td className="border px-4 py-2 flex flex-col gap-2">
+                    <button
+                      onClick={() => handleEdit(member)}
+                      className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 mr-2"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => {
+                        setDeleteId(member._id);
+                        setDeleteModal(true);
+                      }}
+                      className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {/* Modal for Add/Edit Member */}
         {showModal && (

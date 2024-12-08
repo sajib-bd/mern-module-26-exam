@@ -3,7 +3,7 @@ const HeroSection = () => {
     <section className="relative bg-gray-900 text-white h-screen flex items-center">
       <div className="absolute inset-0">
         <img
-          src="https://via.placeholder.com/1600x900.png?text=Lie+Blog"
+          src="https://th.bing.com/th/id/OIP.sa71CFdFnIDNTeRVxa7sWgHaEJ?rs=1&pid=ImgDetMain"
           alt="Hero Background"
           className="w-full h-full object-cover"
         />

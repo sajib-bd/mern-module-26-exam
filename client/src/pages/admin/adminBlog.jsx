@@ -34,7 +34,6 @@ const AdminBlog = () => {
       setLoading(false);
       if (response.status == 200) {
         setData(response.data.blog);
-        localStorage.setItem("isLogin", true);
       }
     } catch (error) {
       setLoading(false);
@@ -149,56 +148,58 @@ const AdminBlog = () => {
         </button>
 
         {/* Table of blogs */}
-        <table className="w-full border-collapse border border-gray-300 mb-6">
-          <thead>
-            <tr>
-              <th className="border px-4 py-2">Author</th>
-              <th className="border px-4 py-2">Title</th>
-              <th className="border px-4 py-2">Content</th>
-              <th className="border px-4 py-2">Image</th>
-              <th className="border px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item) => (
-              <tr key={item._id}>
-                <td className="border px-4 py-2">{item.author}</td>
-                <td className="border px-4 py-2">{item.title}</td>
-                <td className="border px-4 py-2">
-                  {sliceContent(item.content)}
-                </td>
-                <td className="border px-4 py-2">
-                  {item.imageUrl && (
-                    <img
-                      src={item.imageUrl}
-                      alt={item.title}
-                      className="h-16 w-16 object-cover"
-                    />
-                  )}
-                </td>
-                <td className="border px-4 py-2">
-                  <div className=" flex flex-col gap-2">
-                    <button
-                      onClick={() => handleEdit(item)}
-                      className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 mr-2"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => {
-                        setDeleteModal(true);
-                        setDeleteId(item._id);
-                      }}
-                      className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-300 mb-6">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Author</th>
+                <th className="border px-4 py-2">Title</th>
+                <th className="border px-4 py-2">Content</th>
+                <th className="border px-4 py-2">Image</th>
+                <th className="border px-4 py-2">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item._id}>
+                  <td className="border px-4 py-2">{item.author}</td>
+                  <td className="border px-4 py-2">{item.title}</td>
+                  <td className="border px-4 py-2">
+                    {sliceContent(item.content)}
+                  </td>
+                  <td className="border px-4 py-2">
+                    {item.imageUrl && (
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="h-16 w-16 object-cover"
+                      />
+                    )}
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="flex flex-col gap-2">
+                      <button
+                        onClick={() => handleEdit(item)}
+                        className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => {
+                          setDeleteModal(true);
+                          setDeleteId(item._id);
+                        }}
+                        className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {/* Modal for Add/Edit Blog */}
         {showModal && (

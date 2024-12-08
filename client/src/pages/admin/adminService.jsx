@@ -141,52 +141,54 @@ const AdminService = () => {
         </button>
 
         {/* Table of services */}
-        <table className="w-full border-collapse border border-gray-300 mb-6">
-          <thead>
-            <tr>
-              <th className="border px-4 py-2">Name</th>
-              <th className="border px-4 py-2">Description</th>
-              <th className="border px-4 py-2">Image</th>
-              <th className="border px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item) => (
-              <tr key={item._id}>
-                <td className="border px-4 py-2">{item.name}</td>
-                <td className="border px-4 py-2">{item.description}</td>
-                <td className="border px-4 py-2">
-                  {item.imageUrl && (
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      className="h-16 w-16 object-cover"
-                    />
-                  )}
-                </td>
-                <td className="border px-4 py-2">
-                  <div className="flex flex-col gap-2">
-                    <button
-                      onClick={() => handleEdit(item)}
-                      className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 mr-2"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => {
-                        setDeleteId(item._id);
-                        setDeleteModal(true);
-                      }}
-                      className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-300 mb-6">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Name</th>
+                <th className="border px-4 py-2">Description</th>
+                <th className="border px-4 py-2">Image</th>
+                <th className="border px-4 py-2">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item._id}>
+                  <td className="border px-4 py-2">{item.name}</td>
+                  <td className="border px-4 py-2">{item.description}</td>
+                  <td className="border px-4 py-2">
+                    {item.imageUrl && (
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        className="h-16 w-16 object-cover"
+                      />
+                    )}
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="flex flex-col gap-2">
+                      <button
+                        onClick={() => handleEdit(item)}
+                        className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 mr-2"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => {
+                          setDeleteId(item._id);
+                          setDeleteModal(true);
+                        }}
+                        className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {/* Modal for Add/Edit Service */}
         {showModal && (

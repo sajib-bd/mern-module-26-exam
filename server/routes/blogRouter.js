@@ -12,4 +12,5 @@ blog.post("/admin/blog/create", Authorized, createBlog);
 blog.get("/blog/read", readBlog);
 blog.put("/admin/blog/update/:id", Authorized, updateBlog);
 blog.delete("/admin/blog/delete/:id", Authorized, deleteBlog);
+
 export default blog;

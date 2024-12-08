@@ -27,7 +27,7 @@ const BlogSection = () => {
   useEffect(() => {
     (async () => {
       try {
-        const url = "http://localhost:4040/api/v1/blog/read";
+        const url = `${import.meta.env.VITE_BACKEND}/blog/read`;
         const response = await axios(url);
         setBlogs(response.data.blog);
       } catch (error) {}
@@ -60,7 +60,7 @@ const BlogSection = () => {
                 <img
                   src={blog.imageUrl}
                   alt={blog.title}
-                  className="w-full h-40 object-cover rounded-md"
+                  className="w-full h-40  rounded-md"
                 />
                 <h3 className="mt-4 text-lg font-bold">{blog.title}</h3>
                 <p className="text-xs text-gray-500">By {blog.author}</p>
@@ -113,7 +113,7 @@ const BlogSection = () => {
               <img
                 src={selectedBlog.imageUrl}
                 alt={selectedBlog.title}
-                className="w-full h-auto sm:h-48 md:h-80 lg:h-[300px] object-cover rounded-md"
+                className="w-full h-auto sm:h-48 md:h-80 lg:h-[300px] rounded-md"
               />
             </div>
 

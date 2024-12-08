@@ -35,13 +35,13 @@ const AdminLogin = () => {
       setIsLoading(false);
       setError("Login failed. Please check your credentials.");
       toast.error(err.data.message);
+      localStorage.setItem("isLogin", false);
     }
   };
 
   useEffect(() => {
     const login = localStorage.getItem("isLogin");
     if (login == "true") {
-      console.log("object");
       navigate("/admin/dashboard");
     }
   }, [localStorage.getItem("isLogin")]);
